@@ -25,8 +25,8 @@ class ViewController: UIViewController {
     var turn = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         setButtonBorder()
+        
         if lastWinner == "None" || lastWinner == "Blue" {
             winnerLabel.text = "Red Goes First"
             turn = "Red"
@@ -149,47 +149,27 @@ class ViewController: UIViewController {
     }
     
     func setButtonBorder(){
-        btn1.layer.borderWidth = 1
-        btn1.layer.cornerRadius = 10
-        btn1.layer.borderColor = UIColor.black.cgColor
-        btn2.layer.borderWidth = 1
-        btn2.layer.cornerRadius = 10
-        btn2.layer.borderColor = UIColor.black.cgColor
-        btn3.layer.borderWidth = 1
-        btn3.layer.cornerRadius = 10
-        btn3.layer.borderColor = UIColor.black.cgColor
-        btn4.layer.borderWidth = 1
-        btn4.layer.cornerRadius = 10
-        btn4.layer.borderColor = UIColor.black.cgColor
-        btn5.layer.borderWidth = 1
-        btn5.layer.cornerRadius = 10
-        btn5.layer.borderColor = UIColor.black.cgColor
-        btn6.layer.borderWidth = 1
-        btn6.layer.cornerRadius = 10
-        btn6.layer.borderColor = UIColor.black.cgColor
-        btn7.layer.borderWidth = 1
-        btn7.layer.cornerRadius = 10
-        btn7.layer.borderColor = UIColor.black.cgColor
-        btn8.layer.borderWidth = 1
-        btn8.layer.cornerRadius = 10
-        btn8.layer.borderColor = UIColor.black.cgColor
-        btn9.layer.borderWidth = 1
-        btn9.layer.cornerRadius = 10
-        btn9.layer.borderColor = UIColor.black.cgColor
+        for case let topStack as UIStackView in self.view.subviews {
+            for case let stack as UIStackView in topStack.subviews {
+                for case let button as UIButton in stack.subviews {
+                    button.layer.borderWidth = 1
+                    button.layer.cornerRadius = 10
+                    button.layer.borderColor = UIColor.black.cgColor
+                }
+            }
+        }
     }
     
     func resetGame(){
         winnerLabel.text = "\(turn)'s turn"
         lastWinner = "None"
-        btn1.backgroundColor = nil
-        btn2.backgroundColor = nil
-        btn3.backgroundColor = nil
-        btn4.backgroundColor = nil
-        btn5.backgroundColor = nil
-        btn6.backgroundColor = nil
-        btn7.backgroundColor = nil
-        btn8.backgroundColor = nil
-        btn9.backgroundColor = nil
+        for case let topStack as UIStackView in self.view.subviews {
+            for case let stack as UIStackView in topStack.subviews {
+                for case let button as UIButton in stack.subviews {
+                    button.backgroundColor = nil
+                }
+            }
+        }
     }
 }
 
